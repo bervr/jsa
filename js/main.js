@@ -29,13 +29,14 @@ const renderProduct = (sku) => {
 
 };
 const renderPage = list => {
+    // let page =''
     let page = '<table class="table table-striped"><thead><tr><th scope="col">#</th><th scope="col">товар</th><th scope="col">цена</th><th scope="col">фото</th><th scope="col">добавить в корзину</th></tr></thead><tbody>'
     //хотя после такого может и нет. но вариант с дивами рабочий, только закоментил
-    const tableTail = '</tbody></table>'
     const productsList = list.map(item => renderProduct(item));
     productsList.forEach(element => {
         page += element;
     });
+    const tableTail = '</tbody></table>'
     page += tableTail
     document.querySelector('.products').innerHTML = page
 
