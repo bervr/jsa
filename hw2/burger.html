@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>burger</title>
+    <script src='./burger.js' defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="menu" id="menu">
+            <form class="block size">
+                <p>выберете размер бургера:</p>
+                <input type="radio" name="size" id="big" value="big">
+                <label for="big">Большой</label>
+                <input type="radio" name="size" id="small" value="small">
+                <label for="small">Маленький</label>
+            </form>
+            <form class="block additions">
+                <p>выберете начинку:</p>
+                <input type="radio" name="addition" id="1">
+                <label for="1">с сыром</label>
+                <input type="radio" name="addition" id="2">
+                <label for="2">с салатом</label>
+                <input type="radio" name="addition" id="3">
+                <label for="3">с картошкой</label>
+            </form>
+            <div class="block options">
+                <input type="checkbox" name="option" id="spice">
+                <label for="spice">посыпать приправой</label>
+                <input type="checkbox" name="option" id="sauce">
+                <label for="sauce">полить соусом</label>
+            </div>
+            <div class="result"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
