@@ -5,33 +5,46 @@ const app = new Vue({
     data: {
         catalogUrl: '/catalogData.json',
         products: [],
-        imgCatalog: 'https://placehold.it/200x150',
+        searchList: [],
+        imgCatalog: 'https://via.placeholder.com/200x150',
         userSearch: '',
-        show: false
+        isVisibleCart: false,
+        // productsExists: searchList.lenght > 0
+
     },
     methods: {
-        getJson(url){
+        filter() {
+            const regexp = new RegExp(this.userSearch, 'i');
+            this.searchList = this.products.filter(product => regexp.test(product.product_name));
+        },
+
+        getJson(url) {
             return fetch(url)
                 .then(result => result.json())
                 .catch(error => {
                     console.log(error);
                 })
         },
-        addProduct(product){
+        // productsExists(){
+        //     searchList.lenght > 0
+        // },
+        addProduct(product) {
             console.log(product.id_product);
         }
     },
-    mounted(){
-       this.getJson(`${API + this.catalogUrl}`)
-           .then(data => {
-               for(let el of data){
-                   this.products.push(el);
-               }
-           });
+    mounted() {
+        this.getJson(`${API + this.catalogUrl}`)
+            .then(data => {
+                for (let el of data) {
+                    this.products.push(el);
+                    this.searchList.push(el);
+                }
+            });
         this.getJson(`getProducts.json`)
             .then(data => {
-                for(let el of data){
+                for (let el of data) {
                     this.products.push(el);
+                    this.searchList.push(el);
                 }
             })
     }
