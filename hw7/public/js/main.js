@@ -1,3 +1,4 @@
+
 const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 
 const app = new Vue({
@@ -6,7 +7,7 @@ const app = new Vue({
         userSearch: '',
     },
     methods: {
-        getJson(url){
+        getJson(url) {
             return fetch(url)
                 .then(result => result.json())
                 .catch(error => {
@@ -14,7 +15,7 @@ const app = new Vue({
                     this.$refs.error.text = error;
                 })
         },
-        postJson(url, data){
+        postJson(url, data) {
             return fetch(url, {
                 method: 'POST',
                 headers: {
@@ -28,7 +29,7 @@ const app = new Vue({
                     this.$refs.error.text = error;
                 })
         },
-        putJson(url, data){
+        putJson(url, data) {
             return fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -45,7 +46,7 @@ const app = new Vue({
 
 
     },
-    mounted(){
+    mounted() {
 
 
     }
