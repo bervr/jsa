@@ -1,37 +1,37 @@
 // const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 
 Vue.component('cart', {
-    data(){
-      return {
-          cartUrl: '/getBasket.json',
-          cartItems: [],
-          imgCart: 'https://placehold.it/50x100',
-          showCart: false
-      }
+    data() {
+        return {
+            cartUrl: '/getBasket.json',
+            cartItems: [],
+            imgCart: '/static/',
+            showCart: false
+        }
     },
-    mounted(){
+    mounted() {
         this.$parent.getJson(`/api/cart`)
             .then(data => {
-                for (let item of data.contents){
+                for (let item of data.contents) {
                     this.$data.cartItems.push(item);
                 }
             });
     },
     methods: {
-        addProduct(item){
+        addProduct(item) {
             let find = this.cartItems.find(el => el.id_product === item.id_product);
-            if(find){
-                this.$parent.putJson(`/api/cart/${find.id_product}`, {quantity: 1})
+            if (find) {
+                this.$parent.putJson(`/api/cart/${find.id_product}`, { quantity: 1 })
                     .then(data => {
-                        if(data.result === 1){
+                        if (data.result === 1) {
                             find.quantity++
                         }
                     })
             } else {
-                const prod = Object.assign({quantity: 1}, item);
+                const prod = Object.assign({ quantity: 1 }, item);
                 this.$parent.postJson(`/api/cart`, prod)
                     .then(data => {
-                        if(data.result === 1){
+                        if (data.result === 1) {
                             this.cartItems.push(prod)
                         }
                     })
@@ -50,35 +50,46 @@ Vue.component('cart', {
             //         }
             //     })
         },
-        remove(item){
-            this.$parent.getJson(`${API}/addToBasket.json`)
-                .then(data => {
-                    if (data.result === 1) {
-                        if(item.quantity>1){
-                            item.quantity--;
-                        } else {
-                            this.cartItems.splice(this.cartItems.indexOf(item), 1);
+        remove(item) {
+            if (item.quantity > 1) {
+                this.$parent.putJson(`/api/cart/${item.id_product}`, { quantity: -1 })
+                    .then(data => {
+                        if (data.result === 1) {
+                            item.quantity--
                         }
-                    }
-                })
+                    })
+            } else {
+                // console.log('закончилось');
+                this.$parent.deleteJson(`/api/cart/${item.id_product}`)
+                    .then(data => {
+                        if (data.result === 1) {
+                            document.querySelector(`.cart-item[data-productId="${item.id_product}"]`).remove();
+                        }
+                    })
+            }
         },
     },
     template: `<div>
-<button class="btn-cart" type="button" @click="showCart = !showCart">Корзина</button>
-        <div class="cart-block" v-show="showCart">
-            <cart-item v-for="item of cartItems" :key="item.id_product" :img="imgCart" :cart-item="item" @remove="remove">
+            <button class="btn-cart" type="button" @click="showCart = !showCart">Корзина</button>
+            <div class="cart-block" v-show="showCart">
+            <cart-item v-for="item of cartItems" :key="item.id_product" :img="imgCart+item.id_product+'.jpg'" :cart-item="item" @remove="remove">
             </cart-item>
-        </div>
-        </div>
+            </div>
+            </div>
     `
 });
 
 Vue.component('cart-item', {
     props: ['img', 'cartItem'],
+    // data() {
+    //     return {
+    //         img: `${img}${cartItem}.jpg`,
+    //     }
+    // },
     template: `
-    <div class="cart-item">
+    <div class="cart-item" :data-productId=cartItem.id_product>
                     <div class="product-bio">
-                        <img :src="img" alt="Some img">
+                        <img class="cart-img" :src="img" alt="Some img">
                         <div class="product-desc">
                             <div class="product-title">{{ cartItem.product_name }}</div>
                             <div class="product-quantity">Quantity: {{ cartItem.quantity }}</div>
