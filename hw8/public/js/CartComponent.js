@@ -37,18 +37,6 @@ Vue.component('cart', {
                     })
             }
 
-            // this.$parent.getJson(`${API}/addToBasket.json`)
-            //     .then(data => {
-            //         if(data.result === 1){
-            //             let find = this.cartItems.find(el => el.id_product === item.id_product);
-            //             if(find){
-            //                 find.quantity++;
-            //             } else {
-            //                 const prod = Object.assign({quantity: 1}, item);
-            //                 this.cartItems.push(prod)
-            //             }
-            //         }
-            //     })
         },
         remove(item) {
             if (item.quantity > 1) {
@@ -59,7 +47,6 @@ Vue.component('cart', {
                         }
                     })
             } else {
-                // console.log('закончилось');
                 this.$parent.deleteJson(`/api/cart/${item.id_product}`)
                     .then(data => {
                         if (data.result === 1) {
@@ -70,7 +57,7 @@ Vue.component('cart', {
         },
     },
     template: `<div>
-            <button class="btn-cart" type="button" @click="showCart = !showCart">Корзина</button>
+            <button class="btn-search" type="button" @click="showCart = !showCart"> <i class="fas fa-shopping-cart"></i></button>
             <div class="cart-block" v-show="showCart">
             <cart-item v-for="item of cartItems" :key="item.id_product" :img="imgCart+item.id_product+'.jpg'" :cart-item="item" @remove="remove">
             </cart-item>
@@ -81,11 +68,6 @@ Vue.component('cart', {
 
 Vue.component('cart-item', {
     props: ['img', 'cartItem'],
-    // data() {
-    //     return {
-    //         img: `${img}${cartItem}.jpg`,
-    //     }
-    // },
     template: `
     <div class="cart-item" :data-productId=cartItem.id_product>
                     <div class="product-bio">

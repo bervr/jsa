@@ -22,7 +22,7 @@ Vue.component('products', {
             this.filtered = this.products.filter(el => regexp.test(el.product_name));
         }
     },
-    template: `<div class="products">
+    template: `<div class="products generalinfo">
                 <product v-for="item of filtered" 
                 :key="item.id_product" 
                 :img="imgProduct+item.id_product+'.jpg'"
@@ -33,13 +33,15 @@ Vue.component('products', {
 Vue.component('product', {
     props: ['product', 'img'],
     template: `
-            <div class="product-item">
+            <div class="article">
+            <div class="product-item new-box">
                 <img class= "product-img" :src="img" alt="Some img">
-                <div class="desc">
-                    <h3>{{product.product_name}}</h3>
+                <div class="desc heading4">
+                    <h3 class="heading4">{{product.product_name}}</h3>
                     <p>{{product.price}}</p>
-                    <button class="buy-btn" @click="$emit('add-product', product)">Купить</button>
+                    <button class="top_button" @click="$emit('add-product', product)">Купить</button>
                 </div>
+            </div>
             </div>
     `
 })
