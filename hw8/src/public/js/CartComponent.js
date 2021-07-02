@@ -1,6 +1,25 @@
 // const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+const cartItem = {
+    props: ['img', 'cartItem'],
+    template: `
+    <div class="cart-item" :data-productId=cartItem.id_product>
+                    <div class="product-bio">
+                        <img class="cart-img" :src="img" alt="Some img">
+                        <div class="product-desc">
+                            <div class="product-title">{{ cartItem.product_name }}</div>
+                            <div class="product-quantity">Quantity: {{ cartItem.quantity }}</div>
+                            <div class="product-single-price">$ {{ cartItem.price }} each</div>
+                        </div>
+                    </div>
+                    <div class="right-block">
+                        <div class="product-price">{{cartItem.quantity*cartItem.price}}</div>
+                        <button class="del-btn" @click="$emit('remove', cartItem)">&times;</button>
+                    </div>
+                </div>
+    `
+}
 
-Vue.component('cart', {
+const cart = {
     data() {
         return {
             cartUrl: '/getBasket.json',
@@ -8,6 +27,9 @@ Vue.component('cart', {
             imgCart: '/static/',
             showCart: false
         }
+    },
+    components: {
+        'cart-item': cartItem
     },
     mounted() {
         this.$parent.getJson(`/api/cart`)
@@ -64,24 +86,8 @@ Vue.component('cart', {
             </div>
             </div>
     `
-});
+};
 
-Vue.component('cart-item', {
-    props: ['img', 'cartItem'],
-    template: `
-    <div class="cart-item" :data-productId=cartItem.id_product>
-                    <div class="product-bio">
-                        <img class="cart-img" :src="img" alt="Some img">
-                        <div class="product-desc">
-                            <div class="product-title">{{ cartItem.product_name }}</div>
-                            <div class="product-quantity">Quantity: {{ cartItem.quantity }}</div>
-                            <div class="product-single-price">$ {{ cartItem.price }} each</div>
-                        </div>
-                    </div>
-                    <div class="right-block">
-                        <div class="product-price">{{cartItem.quantity*cartItem.price}}</div>
-                        <button class="del-btn" @click="$emit('remove', cartItem)">&times;</button>
-                    </div>
-                </div>
-    `
-})
+
+
+export default cart

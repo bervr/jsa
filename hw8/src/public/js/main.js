@@ -1,8 +1,18 @@
+import cart from './CartComponent'
+import products from './ProductComponent'
+import filterEl from './FilterComp'
+import error from './ErrorComp'
 
 const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 
-const app = new Vue({
+const app = {
     el: '#app',
+    components: {
+        cart,
+        products,
+        error,
+        'filter-el': filterEl
+    },
     data: {
         userSearch: '',
     },
@@ -25,7 +35,7 @@ const app = new Vue({
             })
                 .then(result => result.json())
                 .catch(error => {
-                    // console.log(error)
+                    console.log(error)
                     this.$refs.error.text = error;
                 })
         },
@@ -62,5 +72,6 @@ const app = new Vue({
 
 
     }
+};
 
-});
+export default app
