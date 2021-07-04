@@ -13,15 +13,13 @@ module.exports = {
     },
     target: "node",
     node: {
-        // Только для express приложений
         __dirname: false,
         __filename: false
     },
-    externals: [nodeExternals()], // Только для express приложений
+    externals: [nodeExternals()],
     module: {
         rules: [
             {
-                // Перекомпилировать es6+ в  es5
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader"
