@@ -54,7 +54,7 @@ const app = {
                 })
         },
         deleteJson(url) {
-            console.log('удалить последний')
+            // console.log('удалить последний объект')
             return fetch(url, {
                 method: 'DELETE',
 

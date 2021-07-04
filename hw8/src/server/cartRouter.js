@@ -4,15 +4,11 @@ const router = express.Router();
 const handler = require('./handler');
 
 router.get('/', (req, res) => {
-    console.log(__dirname);
     fs.readFile('dist/server/db/userCart.json', 'utf-8', (err, data) => {
-        // console.log(err, data);
         if (err) {
             res.sendStatus(404, JSON.stringify({ result: 0, text: err }));
-            // console.log('404');
         } else {
             res.send(data);
-            // console.log('что-то фигня');
         }
     })
 });
