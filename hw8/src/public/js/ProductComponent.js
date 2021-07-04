@@ -1,4 +1,20 @@
-Vue.component('products', {
+const product = {
+    props: ['product', 'img'],
+    template: `
+            <div class="article">
+            <div class="product-item new-box">
+                <img class= "product-img" :src="img" alt="Some img">
+                <div class="desc heading4">
+                    <h3 class="heading4">{{product.product_name}}</h3>
+                    <p>{{product.price}}</p>
+                    <button class="top_button" @click="$emit('add-product', product)">Купить</button>
+                </div>
+            </div>
+            </div>
+    `
+}
+
+const products = {
     data() {
         return {
             catalogUrl: '/catalogData.json',
@@ -6,6 +22,9 @@ Vue.component('products', {
             products: [],
             imgProduct: '/static/'
         }
+    },
+    components: {
+        product
     },
     mounted() {
         this.$parent.getJson(`/api/products`)
@@ -22,24 +41,14 @@ Vue.component('products', {
             this.filtered = this.products.filter(el => regexp.test(el.product_name));
         }
     },
-    template: `<div class="products">
+    template: `<div class="products generalinfo">
                 <product v-for="item of filtered" 
                 :key="item.id_product" 
                 :img="imgProduct+item.id_product+'.jpg'"
                 :product="item"
                 @add-product="$parent.$refs.cart.addProduct"></product>
                </div>`
-});
-Vue.component('product', {
-    props: ['product', 'img'],
-    template: `
-            <div class="product-item">
-                <img class= "product-img" :src="img" alt="Some img">
-                <div class="desc">
-                    <h3>{{product.product_name}}</h3>
-                    <p>{{product.price}}</p>
-                    <button class="buy-btn" @click="$emit('add-product', product)">Купить</button>
-                </div>
-            </div>
-    `
-})
+};
+
+
+export default products

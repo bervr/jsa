@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="wrapper">
+            <div class="heaven">
+                <div class="top">
+                    <div class="container box">
+                        <ul class="menu">
+                            <li><a href="index.html"><img src="images/logo.svg" alt="Главная"></a></li>
+                            <div class="cart">
+                                <filter-el></filter-el>
+                                <cart ref="cart"></cart>
+                            </div>
+                            <li><a href="contact.html"><img src="images/contact.svg" alt="Контакты"></a></li>
+                        </ul>
+                        <div class="main">
+                            <error ref="error"></error>
+
+                            <h1 class="top-heading">Фирма продаж ботинка </h1>
+                            <p class="text mission">Мы продаем лыжные ботинки уже более 5 дней и мы офигенны! Покупайте
+                                лыжный
+                                ботинок только у нас и
+                                будете
+                                иметь
+                                уважение.
+                            </p>
+                            <a href="#" class="top_button">See Our Project</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="what-we-do container">
+                    <div class="what-we-do">
+                        <h3 class="heading3">Каталог</h3>
+                        <div class="generalinfo">
+                            <products ref="products"></products>
+                            <div class="article one">
+                                <div class="new-box">
+                                    <img class="card-img" src="images/1.svg" alt="img1">
+                                    <h4 class="heading4">Можно говорить бесконечно</h4>
+                                    <p class="text">Но лучше один раз увидеть чем несколько раз прочитать. Перейти в
+                                        каталог
+                                    </p>
+                                </div>
+                                <a href="#" class="learn-more">Learn more</a>
+                            </div>
+                            <div class="article two">
+                                <div class="new-box">
+                                    <img class="card-img" src="images/2.svg" alt="img2">
+                                    <h4 class="heading4">Существует множество мифов </h4>
+                                    <p class="text">например миф о том что Прометей украл сандалии (прообраз
+                                        современного
+                                        ботинка) у
+                                        древних
+                                        богов.<br>
+                                        О том как правильно выбрать ботинки и не лишиться здоровья читайте далее...</p>
+                                </div>
+                                <a href="#" class="learn-more">Learn more</a>
+                            </div>
+                            <div class="article three">
+                                <div class="new-box">
+                                    <img class="card-img" src="images/3.svg" alt="img3">
+                                    <h4 class="heading4">Нужно точно знать</h4>
+                                    <p class="text">Есть у вас ботинки на следующий сезон или нет? О том как сэкономить
+                                        на
+                                        покупке
+                                        побробный обзор в
+                                        этой
+                                        статье... </p>
+                                </div>
+                                <a href="#" class="learn-more">Learn more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="heading3">Наши партнеры </h3>
+                <div class="partners container">
+                    <p class="text text-partners">Мы сотрудничаем с ведущими мировыми производителями лыжного ботинка,
+                        лыжного
+                        ботинка. Лыжного ботинка? Лыжного ботинка!</p>
+                    <div class="partners-item"><img class="partner-img" src="images/par1.png" alt="">
+                        <p class="partners-text">Smart Home Installation</p>
+                    </div>
+                    <div class="partners-parent">
+                        <div class="partners-item partners-item-margin"><img class="partner-img" src="images/par2.png"
+                                alt="">
+                            <p class="partners-text right">Sparklite App</p>
+                        </div>
+                        <div class="partners-item"><img class="partner-img" src="images/par3.png" alt="">
+                            <p class="partners-text right">Car-Rapetition App</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+
+                <div class="container foo-box">
+                    <div class="customers">
+                        <div class="guarantee">
+                            <div class="footer-text">
+                                <h3 class="our-customer">Наши покупатели</h3>
+                                <p class="text customers-text">Приобретая лыжный ботинок у нас вы можете быть уверены в
+                                    качестве
+                                    и
+                                    получаете
+                                    гарантированный правый ботинок в каждрой поставке!</p>
+                            </div>
+                            <a href="#" class="lets-talk">Let’s Talk</a>
+                        </div>
+                    </div>
+                </div>
+                <hr class="line">
+                <div class="container foo-box">
+                    <div class="footre-bottom">
+                        <ul class="legal_info">
+                            <li class="legal_info_str">произвольный текст</li>
+                            <li class="legal_info_str">+7(495)0000001</li>
+                            <li class="legal_info_str">info@example.ru</li>
+                        </ul>
+                        <div class="copyright">
+                            <p class="copy-text">Все права защищены</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"
+        integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- <script src="js/ProductComponent.js"></script>
+    <script src="js/CartComponent.js"></script>
+    <script src="js/FilterComp.js"></script>
+    <script src="js/ErrorComp.js"></script>
+    <script src="js/main.js"></script> -->
+</body>
+
+</html>
